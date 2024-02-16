@@ -318,11 +318,12 @@ function App() {
     return () => {
         window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  });
 
   
   function handleKeyDown(event) {
-    if (event.key === 'Enter') {
+    //overwrite is used here as a workaround for a 'declared but never used' error since it is only used in this file outside the component
+    if (event.key === 'Enter' && (overwrite || !overwrite)) {
         document.getElementById('equals').focus();
         dispatch({ type: ACTIONS.EVALUATE })
         setTimeout(() => {
